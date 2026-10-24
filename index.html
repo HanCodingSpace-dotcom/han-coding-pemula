@@ -74,13 +74,15 @@ footer{text-align:center;padding:24px;color:var(--muted);border-top:1px solid va
  <a class="btn" href="#coding">💻 Mulai Coding</a>
  <a class="btn" href="#musik">🎧 Music Space</a>
  <div class="terminal">&gt; Initializing Han Coding Space...<br>&gt; Loading modules...<br>&gt; Status: ONLINE ✓<br>&gt; Welcome, developer!</div>
+
  <div class="naruto">
   <h2>🍥 Naruto Opening Zone</h2>
-  <div id="narutoPlayer"><p class="muted">Tekan tombol untuk memuat video.</p></div>
+  <div id="narutoPlayer"><p class="muted">Tekan tombol untuk memuat FLOW — GO!!!</p></div>
   <button class="btn" onclick="playNaruto()">▶ Putar Naruto Opening</button>
-  <a class="btn" href="https://www.youtube.com/results?search_query=Naruto+opening+official" target="_blank" rel="noopener">Cari di YouTube ↗</a>
-  <p class="small">Jika video tidak bisa diputar, cari opening resmi di YouTube.</p>
+  <a class="btn" href="https://www.youtube.com/results?search_query=FLOW+GO+Naruto+official" target="_blank" rel="noopener">Cari di YouTube ↗</a>
+  <p class="small">Jika video tidak tersedia untuk diputar di situs, gunakan link YouTube.</p>
  </div>
+
  <div class="grid" style="text-align:left;margin-top:15px">
   <div class="card"><h3>💻 Coding</h3><p>Belajar membuat website.</p></div>
   <div class="card"><h3>🤖 Artificial Intelligence</h3><p>Menjelajahi teknologi AI.</p></div>
@@ -159,9 +161,10 @@ button{padding:10px;background:#39ff91;border:0;border-radius:8px}
  <p class="muted">Playlist Han, Pani, dan Daiyan. Pemutaran bergantung pada ketersediaan video YouTube.</p>
  <h3>💚 By Owner — Han</h3>
  <div class="songlist">
-  <div class="song"><div><b>Iris</b><div class="small">Goo Goo Dolls</div></div><button class="btn" onclick="playSong('Iris — Goo Goo Dolls','NDu4Xn1B9Tg')">▶ Putar</button></div>
-  <div class="song"><div><b>18</b><div class="small">One Direction</div></div><button class="btn" onclick="playSong('18 — One Direction','NdYWuo9OFAw')">▶ Putar</button></div>
+  <div class="song"><div><b>Iris</b><div class="small">Goo Goo Dolls</div></div><button class="btn" onclick="playSong('Iris — Goo Goo Dolls','NdYWuo9OFAw')">▶ Putar</button></div>
+  <div class="song"><div><b>18</b><div class="small">One Direction</div></div><button class="btn" onclick="searchSong('One Direction 18 official audio')">▶ Cari & Putar</button></div>
  </div>
+
  <h3>🌸 Request from Pani</h3>
  <div class="songlist">
   <div class="song"><div><b>Stop the Wedding!</b><div class="small">Ashe</div></div><button class="btn" onclick="searchSong('Stop the Wedding Ashe')">▶ Cari</button></div>
@@ -172,14 +175,16 @@ button{padding:10px;background:#39ff91;border:0;border-radius:8px}
   <div class="song"><div><b>the cure</b><div class="small">Olivia Rodrigo</div></div><button class="btn" onclick="searchSong('the cure Olivia Rodrigo')">▶ Cari</button></div>
   <div class="song"><div><b>Moral of the Story</b><div class="small">Ashe</div></div><button class="btn" onclick="searchSong('Moral of the Story Ashe')">▶ Cari</button></div>
  </div>
+
  <h3>❄️ Request from Daiyan</h3>
  <div class="songlist">
   <div class="song"><div><b>Nuts</b><div class="small">Lil Peep ft. rainy bear</div></div><button class="btn" onclick="searchSong('Nuts Lil Peep rainy bear')">▶ Cari</button></div>
  </div>
+
  <div id="playerWrap">
   <hr><h3 id="playerTitle">Music Player</h3>
   <div id="musicFrame"></div>
-  <a id="musicFallback" class="btn" href="#" target="_blank" rel="noopener">Buka di YouTube ↗</a>
+  <p><a id="musicFallback" class="btn" href="#" target="_blank" rel="noopener">Jika gagal, buka YouTube ↗</a></p>
   <button class="btn" onclick="stopSong()">■ Hentikan</button>
  </div>
  <p class="small">Tombol Cari membuka hasil YouTube agar lagu yang benar bisa dipilih.</p>
@@ -236,16 +241,17 @@ button{padding:10px;background:#39ff91;border:0;border-radius:8px}
  <p>Kirim saran untuk mengembangkan Han Coding Space.</p>
  <form action="https://formsubmit.co/mraihanfirdiansyah@gmail.com" method="POST">
   <input type="hidden" name="_subject" value="Feedback Han Coding Space">
+  <input type="hidden" name="_captcha" value="true">
   <label for="feedbackName">Nama (opsional)</label>
   <input id="feedbackName" name="name" placeholder="Nama kamu">
   <label for="feedbackMessage">Pesan</label>
   <textarea id="feedbackMessage" name="message" rows="4" required placeholder="Tulis saran..."></textarea>
   <button class="btn" type="submit">Kirim Feedback</button>
  </form>
- <p class="small">Form menggunakan layanan pihak ketiga dan mungkin meminta konfirmasi email pertama kali.</p>
+ <p class="small">Form memakai layanan pihak ketiga dan mungkin memerlukan konfirmasi email pertama kali.</p>
  <a class="btn" href="mailto:mraihanfirdiansyah@gmail.com?subject=Feedback%20Han%20Coding%20Space">Buka Email</a>
  <button class="btn" onclick="copyEmail()">📋 Salin Email</button>
- <p id="emailStatus" class="small"></p>
+ <p id="emailStatus" class="small" aria-live="polite"></p>
 </section>
 
 <section>
@@ -267,9 +273,16 @@ button{padding:10px;background:#39ff91;border:0;border-radius:8px}
 
 /* JAM WIB */
 function updateClock(){
- const date=new Intl.DateTimeFormat("id-ID",{timeZone:"Asia/Jakarta",weekday:"long",day:"2-digit",month:"long",year:"numeric"}).format(new Date());
- const time=new Intl.DateTimeFormat("id-ID",{timeZone:"Asia/Jakarta",hour:"2-digit",minute:"2-digit",second:"2-digit",hour12:false}).format(new Date());
- document.getElementById("clock").textContent=date+" • "+time+" WIB";
+ const clock=document.getElementById("clock");
+ if(!clock)return;
+ const now=new Date();
+ const date=new Intl.DateTimeFormat("id-ID",{
+  timeZone:"Asia/Jakarta",weekday:"long",day:"2-digit",month:"long",year:"numeric"
+ }).format(now);
+ const time=new Intl.DateTimeFormat("id-ID",{
+  timeZone:"Asia/Jakarta",hour:"2-digit",minute:"2-digit",second:"2-digit",hourCycle:"h23"
+ }).format(now);
+ clock.textContent=date+" • "+time+" WIB";
 }
 updateClock();
 setInterval(updateClock,1000);
@@ -279,6 +292,7 @@ document.getElementById("year").textContent=new Date().getFullYear();
 const editor=document.getElementById("editor");
 const preview=document.getElementById("preview");
 const starterCode=editor.value;
+
 function runCode(){
  preview.srcdoc=editor.value;
  document.getElementById("editorStatus").textContent="Preview diperbarui.";
@@ -291,7 +305,11 @@ function downloadCode(){
  const blob=new Blob([editor.value],{type:"text/html;charset=utf-8"});
  const url=URL.createObjectURL(blob);
  const a=document.createElement("a");
- a.href=url;a.download="hasil-coding.html";a.click();
+ a.href=url;
+ a.download="hasil-coding.html";
+ document.body.appendChild(a);
+ a.click();
+ a.remove();
  setTimeout(()=>URL.revokeObjectURL(url),1000);
 }
 async function copyCode(){
@@ -299,37 +317,56 @@ async function copyCode(){
   await navigator.clipboard.writeText(editor.value);
   document.getElementById("editorStatus").textContent="Kode berhasil disalin.";
  }catch(e){
-  editor.focus();editor.select();
-  document.getElementById("editorStatus").textContent="Kode dipilih. Gunakan menu Salin di HP.";
+  editor.focus();
+  editor.select();
+  document.getElementById("editorStatus").textContent="Kode dipilih. Tekan Salin dari menu HP.";
  }
 }
 runCode();
 
-/* VIDEO */
+/* VIDEO MUSIK DAN NARUTO */
 function makeVideo(container,id,title,autoplay){
- if(!/^[A-Za-z0-9_-]{11}$/.test(id))return;
+ if(!container)return;
  container.replaceChildren();
+
  const frame=document.createElement("iframe");
- frame.className="video";frame.title=title;
+ frame.className="video";
+ frame.title=title;
+ frame.loading="lazy";
  frame.allow="autoplay; encrypted-media; picture-in-picture; fullscreen";
  frame.allowFullscreen=true;
  frame.referrerPolicy="strict-origin-when-cross-origin";
- frame.src="https://www.youtube-nocookie.com/embed/"+id+"?playsinline=1&rel=0"+(autoplay?"&autoplay=1":"");
+ frame.src="https://www.youtube.com/embed/"+id+"?playsinline=1&rel=0"+(autoplay?"&autoplay=1":"");
  container.appendChild(frame);
 }
+
 function playNaruto(){
- makeVideo(document.getElementById("narutoPlayer"),"WO8SoTZ8QTM","Naruto Opening",true);
+ makeVideo(
+  document.getElementById("narutoPlayer"),
+  "733J7oUR904",
+  "FLOW - GO!!! Naruto Opening",
+  true
+ );
 }
+
 function playSong(title,id){
+ const wrap=document.getElementById("playerWrap");
+ const fallback=document.getElementById("musicFallback");
+
  document.getElementById("playerTitle").textContent="🎧 "+title;
  makeVideo(document.getElementById("musicFrame"),id,title,true);
- document.getElementById("musicFallback").href="https://www.youtube.com/watch?v="+id;
- document.getElementById("playerWrap").style.display="block";
- document.getElementById("playerWrap").scrollIntoView({behavior:"smooth",block:"nearest"});
+
+ fallback.href="https://www.youtube.com/watch?v="+id;
+ fallback.textContent="Jika gagal diputar, buka "+title+" di YouTube ↗";
+ wrap.style.display="block";
+ wrap.scrollIntoView({behavior:"smooth",block:"nearest"});
 }
+
 function searchSong(q){
- window.open("https://www.youtube.com/results?search_query="+encodeURIComponent(q),"youtubeSearch","noopener");
+ const url="https://www.youtube.com/results?search_query="+encodeURIComponent(q);
+ window.open(url,"_blank","noopener");
 }
+
 function stopSong(){
  document.getElementById("musicFrame").replaceChildren();
  document.getElementById("playerWrap").style.display="none";
@@ -348,42 +385,52 @@ async function searchWiki(event){
  const q=document.getElementById("wikiQuery").value.trim();
  const out=document.getElementById("wikiResults");
  if(!q)return;
+
  out.textContent="Sedang mencari...";
  try{
   const url="https://id.wikipedia.org/w/api.php?action=query&generator=search&gsrsearch="+encodeURIComponent(q)+"&gsrlimit=6&prop=extracts&exintro=1&explaintext=1&format=json&origin=*";
   const response=await fetch(url);
   if(!response.ok)throw Error("Pencarian gagal");
+
   const data=await response.json();
   const pages=Object.values(data.query?.pages||{});
   out.replaceChildren();
-  if(!pages.length){out.textContent="Artikel tidak ditemukan.";return;}
+
+  if(!pages.length){
+   out.textContent="Artikel tidak ditemukan.";
+   return;
+  }
+
   pages.sort((a,b)=>(a.index||0)-(b.index||0));
   pages.forEach(page=>{
-   const item=document.createElement("div");item.className="result";
-   const title=document.createElement("h3");title.textContent=page.title;
-   const desc=document.createElement("p");desc.textContent=(page.extract||"Ringkasan tidak tersedia.").slice(0,450);
-   const link=document.createElement("a");link.href="https://id.wikipedia.org/?curid="+page.pageid;
-   link.target="_blank";link.rel="noopener";link.textContent="Baca artikel lengkap ↗";
-   item.append(title,desc,link);out.appendChild(item);
+   const item=document.createElement("div");
+   item.className="result";
+
+   const title=document.createElement("h3");
+   title.textContent=page.title;
+
+   const desc=document.createElement("p");
+   desc.textContent=(page.extract||"Ringkasan tidak tersedia.").slice(0,450);
+
+   const link=document.createElement("a");
+   link.href="https://id.wikipedia.org/?curid="+page.pageid;
+   link.target="_blank";
+   link.rel="noopener";
+   link.textContent="Baca artikel lengkap ↗";
+
+   item.append(title,desc,link);
+   out.appendChild(item);
   });
- }catch(e){out.textContent="Pencarian gagal. Periksa koneksi internet dan coba lagi.";}
+ }catch(e){
+  out.textContent="Pencarian gagal. Periksa koneksi internet dan coba lagi.";
+ }
 }
 
 /* KUIS */
 function checkQuiz(){
  const answers={q1:"a",q2:"b",q3:"c"};
- let score=0,empty=0;
- for(const id in answers){
-  const value=document.getElementById(id).value;
-  if(!value)empty++;
-  if(value===answers[id])score++;
- }
- document.getElementById("quizResult").textContent="Skor: "+score+"/3"+(empty?" • "+empty+" soal belum dijawab.":score===3?" • Sempurna! 🎉":" • Coba lagi!");
-}
-function resetQuiz(){
- ["q1","q2","q3"].forEach(id=>document.getElementById(id).value="");
- document.getElementById("quizResult").textContent="";
-}
+ let score=0;
+ let empty=0;
 
-/* EMAIL */
-async function copyEmail(){                                              
+ for(const id in answers){
+  const value=document.getElem
