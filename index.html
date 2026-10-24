@@ -3,434 +3,358 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#080d09">
-<title>Han Coding Space</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HAN </> Coding Space</title>
+
 <style>
-:root{--bg:#080d09;--panel:#111b14;--green:#39ff91;--line:#294a34;--muted:#a9b9ad}
 *{box-sizing:border-box}
-html{scroll-behavior:smooth;scroll-padding-top:80px}
-body{margin:0;background:var(--bg);color:#effff2;font:15px/1.65 Arial,sans-serif}
-header{text-align:center;padding:26px 12px;background:radial-gradient(ellipse at top,#205332,#080d09 75%);border-bottom:1px solid var(--line)}
-.logo{font-size:32px;font-weight:900;color:var(--green)}
-.logo span{color:white}
-#clock{color:var(--green);font-size:13px}
-nav{position:sticky;top:0;z-index:10;display:flex;justify-content:center;flex-wrap:wrap;gap:6px;padding:10px;background:#080d09f5;border-bottom:1px solid var(--line)}
-nav a,.btn{color:var(--green);background:#122219;border:1px solid #356745;border-radius:8px;padding:8px 11px;text-decoration:none;font-size:13px;cursor:pointer;display:inline-block}
-nav a:hover,.btn:hover{background:#235132}
-main{max-width:1050px;margin:auto;padding:12px}
-section{background:var(--panel);border:1px solid var(--line);border-radius:13px;padding:18px;margin:17px 0;scroll-margin-top:75px}
-h2{color:var(--green);margin-top:0}
-h3{margin-bottom:5px}
-p{overflow-wrap:anywhere}
-.muted,.small{color:var(--muted)}
-.small{font-size:12px}
-.hero{text-align:center;padding:30px 14px}
-.hero h1{font-size:clamp(30px,7vw,48px)}
-.green{color:var(--green)}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,210px),1fr));gap:10px}
-.card{padding:13px;background:#0a110c;border:1px solid var(--line);border-radius:9px}
-input,textarea,select{width:100%;padding:11px;background:#080d09;color:white;border:1px solid #355840;border-radius:7px;margin:5px 0 12px;font:inherit}
-textarea{font-family:monospace}
-.terminal{max-width:650px;margin:20px auto;background:#030604;border:1px solid var(--line);border-radius:9px;padding:14px;text-align:left;color:var(--green);font:13px/1.8 monospace}
-.video{width:100%;aspect-ratio:16/9;border:0;border-radius:9px;background:#000}
-.naruto{padding:14px;background:#24180b;border:1px solid #98652c;border-radius:10px;margin-top:22px}
-.naruto h2{color:#ffb54f}
-.songlist{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:8px}
-.song{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:10px;border:1px solid var(--line);border-radius:8px;background:#0a110c}
-.song .btn{flex-shrink:0}
-#playerWrap{display:none;margin-top:18px}
-#editor{min-height:260px;white-space:pre;tab-size:2}
-#preview{width:100%;height:320px;background:white;border:1px solid var(--line);border-radius:8px}
-.chart{width:100%;height:360px;border:0;background:#080d09;border-radius:8px}
-.result{padding:12px 0;border-bottom:1px solid var(--line)}
-.result a{color:var(--green)}
-#egg{display:none;padding:15px;background:#2a1017;border:1px solid #9b3447;border-radius:9px;text-align:center}
-footer{text-align:center;padding:24px;color:var(--muted);border-top:1px solid var(--line)}
-@media(max-width:600px){main{padding:7px}section{padding:13px}.hero{padding:20px 8px}.chart{height:300px}}
+:root{
+ --bg:#080b18;--card:#11182c;--line:#293451;
+ --purple:#8b7cff;--cyan:#50e6d2;
+ --text:#f1f4ff;--muted:#9da9c7;
+}
+body{
+ margin:0;background:radial-gradient(ellipse at top,#202454,var(--bg) 65%);
+ color:var(--text);font:15px Arial,sans-serif;
+}
+header{
+ padding:20px;display:flex;justify-content:space-between;
+ align-items:center;gap:12px;flex-wrap:wrap;
+ border-bottom:1px solid var(--line)
+}
+.logo{font-size:23px;font-weight:bold}
+.logo span{color:var(--cyan)}
+#clock{color:var(--cyan);text-align:right}
+nav{display:flex;gap:8px;padding:14px;overflow:auto}
+button{
+ border:1px solid var(--line);background:#19213a;
+ color:white;padding:11px 15px;border-radius:10px;cursor:pointer
+}
+button:hover,.active{background:var(--purple)}
+main{max-width:1100px;margin:auto;padding:16px}
+.page{display:none}
+.page.active{display:block}
+.card{
+ background:linear-gradient(140deg,#151d35,#0d1223);
+ border:1px solid var(--line);border-radius:17px;
+ padding:20px;margin-bottom:16px;min-width:0
+}
+h1{font-size:clamp(30px,6vw,48px);margin:12px 0}
+h2{margin-top:0}
+p,.muted{color:var(--muted);line-height:1.6}
+.cyan{color:var(--cyan)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px}
+.stat{padding:15px;border:1px solid var(--line);border-radius:13px;background:#090e1e}
+.stat b{display:block;font-size:21px;margin-top:8px}
+video,iframe{width:100%;aspect-ratio:16/9;border:0;border-radius:12px;background:#05060a}
+.song{
+ display:flex;justify-content:space-between;align-items:center;
+ flex-wrap:wrap;gap:12px;padding:14px 0;border-bottom:1px solid var(--line)
+}
+.small{font-size:12px;color:var(--muted);margin-top:5px}
+input{
+ background:#090e1e;color:white;border:1px solid var(--line);
+ border-radius:10px;padding:12px;min-width:0
+}
+table{width:100%;border-collapse:collapse;min-width:480px}
+th,td{text-align:left;padding:12px;border-bottom:1px solid var(--line)}
+.tablewrap{overflow:auto}
+.up{color:#53e6a4}.down{color:#ff8298}
+#chatbox{
+ height:300px;overflow:auto;background:#090e1e;
+ border:1px solid var(--line);border-radius:12px;padding:12px;margin:12px 0
+}
+.msg{padding:10px;background:#202a48;border-radius:10px;margin:8px 0;overflow-wrap:anywhere}
+.me{background:#443b80;text-align:right}
+footer{text-align:center;color:var(--muted);padding:25px}
+@media(max-width:500px){header{align-items:flex-start}.card{padding:15px}}
 </style>
 </head>
+
 <body>
 <header>
- <div class="logo">HAN <span>&lt;/&gt;</span></div>
- <p>Halo, Han disini! 👋</p>
- <div id="clock">Memuat jam WIB...</div>
+ <div class="logo">HAN <span>&lt;/&gt;</span> Coding Space</div>
+ <div>
+  <div id="clock">Memuat jam...</div>
+  <div id="date" class="small"></div>
+ </div>
 </header>
 
 <nav>
- <a href="#home">Home</a><a href="#coding">Coding</a>
- <a href="#komputer">Komputer</a><a href="#ai">Sejarah AI</a>
- <a href="#it">IT Indonesia</a><a href="#musik">Musik</a>
- <a href="#tokoh">Tokoh</a><a href="#pasar">Trading</a>
- <a href="#wiki">Wikipedia</a><a href="#quiz">Kuis</a>
- <a href="#feedback">Feedback</a>
+ <button class="active" onclick="showPage('home',this)">⌂ Home</button>
+ <button onclick="showPage('music',this)">♫ Music</button>
+ <button onclick="showPage('market',this)">◈ Pasar Saham</button>
+ <button onclick="showPage('currency',this)">⇅ Mata Uang</button>
+ <button onclick="showPage('chat',this)">☏ Chat all Han-coding</button>
 </nav>
 
 <main>
-<section id="home" class="hero">
- <p class="green">WELCOME TO MY DIGITAL SPACE</p>
- <h1>Han <span class="green">Coding Space</span></h1>
- <p class="muted">Explore technology. Learn coding. Create something awesome.</p>
- <a class="btn" href="#coding">💻 Mulai Coding</a>
- <a class="btn" href="#musik">🎧 Music Space</a>
- <div class="terminal">&gt; Initializing Han Coding Space...<br>&gt; Loading modules...<br>&gt; Status: ONLINE ✓<br>&gt; Welcome, developer!</div>
 
- <div class="naruto">
-  <h2>🍥 Naruto Opening Zone</h2>
-  <div id="narutoPlayer"><p class="muted">Tekan tombol untuk memuat FLOW — GO!!!</p></div>
-  <button class="btn" onclick="playNaruto()">▶ Putar Naruto Opening</button>
-  <a class="btn" href="https://www.youtube.com/results?search_query=FLOW+GO+Naruto+official" target="_blank" rel="noopener">Cari di YouTube ↗</a>
-  <p class="small">Jika video tidak tersedia untuk diputar di situs, gunakan link YouTube.</p>
+<!-- HOME -->
+<section id="home" class="page active">
+ <div class="card">
+  <div class="cyan">WELCOME TO MY SPACE</div>
+  <h1>Halo, Han di sini! 👋</h1>
+  <h2 class="cyan">Build. Learn. Explore.</h2>
+  <p>Musik, pasar finansial dunia, cryptocurrency, dan tempat ngobrol dalam satu website.</p>
+  <button onclick="showPage('music')">Putar Musik ♫</button>
+  <button onclick="showPage('market')">Lihat Market ↗</button>
  </div>
 
- <div class="grid" style="text-align:left;margin-top:15px">
-  <div class="card"><h3>💻 Coding</h3><p>Belajar membuat website.</p></div>
-  <div class="card"><h3>🤖 Artificial Intelligence</h3><p>Menjelajahi teknologi AI.</p></div>
-  <div class="card"><h3>🌐 Digital World</h3><p>Temukan pengetahuan baru.</p></div>
+ <div class="card">
+  <h2>🎬 Permulaan — Naruto Shippuden OP 16</h2>
+  <video controls playsinline preload="metadata">
+   <source src="Naruto%20Shippuden%20Op%20Opening%2016%204k%2060%20FSP.mp4" type="video/mp4">
+   Browser tidak mendukung video ini.
+  </video>
+  <p class="small">Upload file video milikmu ke repository yang sama dengan index.html dan samakan nama filenya.</p>
  </div>
-</section>
 
-<section id="coding">
- <h2>💻 Coding Playground</h2>
- <p class="muted">Tulis HTML, CSS, dan JavaScript lalu jalankan hasilnya.</p>
- <textarea id="editor" spellcheck="false"><!DOCTYPE html>
-<html lang="id">
-<head>
-<meta charset="UTF-8">
-<style>
-body{background:#101713;color:#39ff91;text-align:center;font-family:Arial;padding:20px}
-button{padding:10px;background:#39ff91;border:0;border-radius:8px}
-</style>
-</head>
-<body>
-<h1>Halo, Dunia! 👋</h1>
-<p>Website pertama buatan Han!</p>
-<button onclick="alert('Coding berhasil!')">Klik Aku</button>
-</body>
-</html></textarea>
- <button class="btn" onclick="runCode()">▶ Run Code</button>
- <button class="btn" onclick="resetCode()">↻ Reset</button>
- <button class="btn" onclick="downloadCode()">⬇ Download HTML</button>
- <button class="btn" onclick="copyCode()">📋 Salin Kode</button>
- <p id="editorStatus" class="small" aria-live="polite">Siap coding.</p>
- <h3>Live Preview</h3>
- <iframe id="preview" title="Hasil coding" sandbox="allow-scripts"></iframe>
-</section>
-
-<section id="komputer">
- <h2>📚 Komputer dan Jaringan Dasar</h2>
  <div class="grid">
-  <div class="card"><h3>Hardware</h3><p>Komponen fisik komputer.</p></div>
-  <div class="card"><h3>Software</h3><p>Program dan aplikasi komputer.</p></div>
-  <div class="card"><h3>Brainware</h3><p>Manusia yang mengoperasikan komputer.</p></div>
-  <div class="card"><h3>CPU</h3><p>Memproses instruksi komputer.</p></div>
-  <div class="card"><h3>RAM</h3><p>Menyimpan data sementara ketika program berjalan.</p></div>
-  <div class="card"><h3>HDD dan SSD</h3><p>Media penyimpanan data; SSD umumnya lebih cepat.</p></div>
-  <div class="card"><h3>Motherboard</h3><p>Papan utama penghubung komponen.</p></div>
-  <div class="card"><h3>VGA / GPU</h3><p>Mengolah grafis dan gambar.</p></div>
-  <div class="card"><h3>LAN</h3><p>Jaringan komputer pada area terbatas.</p></div>
-  <div class="card"><h3>K3LH</h3><p>Rapikan kabel, jaga ventilasi, dan matikan perangkat dengan benar.</p></div>
-  <div class="card"><h3>Input</h3><p>Keyboard, mouse, dan mikrofon.</p></div>
-  <div class="card"><h3>Output</h3><p>Monitor, printer, dan speaker.</p></div>
+  <div class="stat">₿ Bitcoin<b id="homeBTC">Memuat...</b><span id="homeBTCChange"></span></div>
+  <div class="stat">Ξ Ethereum<b id="homeETH">Memuat...</b></div>
+  <div class="stat">USD / IDR<b id="homeIDR">Memuat...</b></div>
  </div>
 </section>
 
-<section id="ai">
- <h2>🤖 Sejarah Artificial Intelligence</h2>
- <div class="grid">
-  <div class="card"><h3>1950 — Alan Turing</h3><p>Mengemukakan gagasan pengujian kecerdasan mesin.</p></div>
-  <div class="card"><h3>1956 — Dartmouth</h3><p>Istilah Artificial Intelligence dipakai dalam lokakarya Dartmouth.</p></div>
-  <div class="card"><h3>1997 — Deep Blue</h3><p>Komputer IBM mengalahkan juara catur Garry Kasparov dalam pertandingan.</p></div>
-  <div class="card"><h3>2010-an — Deep Learning</h3><p>Kemajuan pengenalan gambar, suara, dan bahasa.</p></div>
-  <div class="card"><h3>2020-an — Generative AI</h3><p>AI membantu menghasilkan teks, gambar, dan kode.</p></div>
+<!-- MUSIC -->
+<section id="music" class="page">
+ <div class="card">
+  <h2>♫ Music Corner</h2>
+  <p>Lagu diputar melalui YouTube. Tidak mengunduh audio berhak cipta.</p>
+  <iframe id="yt" src="https://www.youtube-nocookie.com/embed/"
+   title="Pemutar musik YouTube"
+   allow="encrypted-media; picture-in-picture" allowfullscreen></iframe>
+
+  <input id="songSearch" placeholder="Cari lagu..." oninput="renderSongs()" style="width:100%;margin:15px 0">
+
+  <div id="songs"></div>
  </div>
 </section>
 
-<section id="it">
- <h2>🇮🇩 Teknologi Informasi Indonesia</h2>
- <div class="grid">
-  <div class="card"><h3>Internet</h3><p>Mendukung komunikasi dan pendidikan.</p></div>
-  <div class="card"><h3>Startup Digital</h3><p>Inovasi perdagangan dan layanan online.</p></div>
-  <div class="card"><h3>Literasi Digital</h3><p>Periksa informasi sebelum membagikannya.</p></div>
-  <div class="card"><h3>Keamanan Siber</h3><p>Jaga kata sandi dan jangan bagikan kode OTP.</p></div>
+<!-- MARKET -->
+<section id="market" class="page">
+ <div class="card">
+  <h2>◈ Global Stock & Crypto Market</h2>
+  <p>Harga cryptocurrency live jika API tersedia. Harga saham membutuhkan API market-data tambahan.</p>
+  <button onclick="loadCrypto()">↻ Refresh Market</button>
+  <div class="grid" style="margin:16px 0">
+   <div class="stat">Bitcoin (BTC)<b id="marketBTC">—</b><span id="changeBTC"></span></div>
+   <div class="stat">Ethereum (ETH)<b id="marketETH">—</b><span id="changeETH"></span></div>
+   <div class="stat">Update terakhir<b id="updated" style="font-size:15px">—</b></div>
+  </div>
+
+  <input id="assetSearch" placeholder="Cari saham / crypto..." oninput="renderAssets()" style="width:100%;margin-bottom:12px">
+
+  <div class="tablewrap">
+   <table>
+    <thead><tr><th>Aset</th><th>Harga USD</th><th>Perubahan 24 jam</th><th>Tipe</th></tr></thead>
+    <tbody id="assets"></tbody>
+   </table>
+  </div>
+  <p class="small">Watchlist saham: Apple, Microsoft, NVIDIA, Google, Amazon, Tesla, Meta, serta ETF ISHG. Harga saham tidak ditampilkan sebagai live tanpa API yang mendukungnya.</p>
  </div>
 </section>
 
-<section id="musik">
- <h2>🎧 Music Space</h2>
- <p class="muted">Playlist Han, Pani, dan Daiyan. Pemutaran bergantung pada ketersediaan video YouTube.</p>
- <h3>💚 By Owner — Han</h3>
- <div class="songlist">
-  <div class="song"><div><b>Iris</b><div class="small">Goo Goo Dolls</div></div><button class="btn" onclick="playSong('Iris — Goo Goo Dolls','NdYWuo9OFAw')">▶ Putar</button></div>
-  <div class="song"><div><b>18</b><div class="small">One Direction</div></div><button class="btn" onclick="searchSong('One Direction 18 official audio')">▶ Cari & Putar</button></div>
+<!-- CURRENCY -->
+<section id="currency" class="page">
+ <div class="card">
+  <h2>⇅ Currency Tracker</h2>
+  <p>Nilai kurs terhadap 1 USD. Untuk mengetahui penguatan atau pelemahan, bandingkan dengan nilai sebelumnya.</p>
+  <button onclick="loadRates()">↻ Refresh Kurs</button>
+  <div class="tablewrap" style="margin-top:16px">
+   <table>
+    <thead><tr><th>Mata uang</th><th>Nilai per 1 USD</th><th>Keterangan</th></tr></thead>
+    <tbody id="rates"><tr><td colspan="3">Memuat kurs...</td></tr></tbody>
+   </table>
+  </div>
  </div>
+</section>
 
- <h3>🌸 Request from Pani</h3>
- <div class="songlist">
-  <div class="song"><div><b>Stop the Wedding!</b><div class="small">Ashe</div></div><button class="btn" onclick="searchSong('Stop the Wedding Ashe')">▶ Cari</button></div>
-  <div class="song"><div><b>Remaja</b><div class="small">HIVI!</div></div><button class="btn" onclick="searchSong('Remaja HIVI official')">▶ Cari</button></div>
-  <div class="song"><div><b>Gadis Sampul</b><div class="small">HIVI!</div></div><button class="btn" onclick="searchSong('Gadis Sampul HIVI official')">▶ Cari</button></div>
-  <div class="song"><div><b>Semenjak Ada Dirimu</b><div class="small">HIVI!</div></div><button class="btn" onclick="searchSong('Semenjak Ada Dirimu HIVI')">▶ Cari</button></div>
-  <div class="song"><div><b>I Love You 3000</b><div class="small">Stephanie Poetri</div></div><button class="btn" onclick="searchSong('I Love You 3000 Stephanie Poetri')">▶ Cari</button></div>
-  <div class="song"><div><b>the cure</b><div class="small">Olivia Rodrigo</div></div><button class="btn" onclick="searchSong('the cure Olivia Rodrigo')">▶ Cari</button></div>
-  <div class="song"><div><b>Moral of the Story</b><div class="small">Ashe</div></div><button class="btn" onclick="searchSong('Moral of the Story Ashe')">▶ Cari</button></div>
+<!-- CHAT -->
+<section id="chat" class="page">
+ <div class="card">
+  <h2>☏ Chat all Han-coding</h2>
+  <p>Chat demo. Pesan hanya tampil di browser ini, belum tersambung ke pengguna lain.</p>
+  <div id="chatbox">
+   <div class="msg">Han Bot: Selamat datang di Chat all Han-coding! 👋</div>
+  </div>
+  <form id="chatForm" style="display:flex;gap:8px">
+   <input id="chatInput" placeholder="Tulis pesan..." maxlength="300" required style="flex:1;width:50%">
+   <button type="submit">Kirim</button>
+  </form>
  </div>
-
- <h3>❄️ Request from Daiyan</h3>
- <div class="songlist">
-  <div class="song"><div><b>Nuts</b><div class="small">Lil Peep ft. rainy bear</div></div><button class="btn" onclick="searchSong('Nuts Lil Peep rainy bear')">▶ Cari</button></div>
- </div>
-
- <div id="playerWrap">
-  <hr><h3 id="playerTitle">Music Player</h3>
-  <div id="musicFrame"></div>
-  <p><a id="musicFallback" class="btn" href="#" target="_blank" rel="noopener">Jika gagal, buka YouTube ↗</a></p>
-  <button class="btn" onclick="stopSong()">■ Hentikan</button>
- </div>
- <p class="small">Tombol Cari membuka hasil YouTube agar lagu yang benar bisa dipilih.</p>
 </section>
 
-<section id="tokoh">
- <h2>🌍 Tokoh Teknologi</h2>
- <div class="grid">
-  <div class="card"><h3>Ada Lovelace</h3><p>Tokoh penting dalam sejarah pemrograman.</p></div>
-  <div class="card"><h3>Alan Turing</h3><p>Berpengaruh pada ilmu komputer dan AI.</p></div>
-  <div class="card"><h3>Tim Berners-Lee</h3><p>Pencipta World Wide Web.</p></div>
-  <div class="card"><h3>Grace Hopper</h3><p>Pelopor bahasa pemrograman dan komputasi.</p></div>
- </div>
- <form onsubmit="googleSearch(event,'peopleQuery')">
-  <label for="peopleQuery">Cari tokoh lain</label>
-  <input id="peopleQuery" placeholder="Nama tokoh teknologi">
-  <button class="btn">Cari di Google ↗</button>
- </form>
-</section>
-
-<section id="pasar">
- <h2>📈 Market Watch</h2>
- <p class="small">Grafik dari TradingView. Bukan rekomendasi investasi.</p>
- <h3>IHSG</h3>
- <iframe class="chart" loading="lazy" title="Grafik IHSG" src="https://s.tradingview.com/widgetembed/?symbol=IDX%3ACOMPOSITE&interval=D&hidesidetoolbar=1&theme=dark&style=1&timezone=Asia%2FJakarta"></iframe>
- <h3>Apple (AAPL)</h3>
- <iframe class="chart" loading="lazy" title="Grafik Apple" src="https://s.tradingview.com/widgetembed/?symbol=NASDAQ%3AAAPL&interval=D&hidesidetoolbar=1&theme=dark&style=1"></iframe>
- <h3>Bitcoin (BTC/USD)</h3>
- <iframe class="chart" loading="lazy" title="Grafik Bitcoin" src="https://s.tradingview.com/widgetembed/?symbol=BITSTAMP%3ABTCUSD&interval=D&hidesidetoolbar=1&theme=dark&style=1"></iframe>
-</section>
-
-<section id="wiki">
- <h2>📚 Wikipedia Explorer</h2>
- <form onsubmit="searchWiki(event)">
-  <label for="wikiQuery">Cari artikel Wikipedia</label>
-  <input id="wikiQuery" placeholder="Contoh: komputer, AI, internet" required>
-  <button class="btn">🔎 Cari</button>
- </form>
- <div id="wikiResults" aria-live="polite"></div>
-</section>
-
-<section id="quiz">
- <h2>🧠 Asah Otak</h2>
- <div class="card"><h3>1. Fungsi RAM?</h3><select id="q1"><option value="">Pilih jawaban</option><option value="a">Menyimpan data sementara</option><option value="b">Mencetak dokumen</option><option value="c">Menghubungkan listrik</option></select></div>
- <div class="card"><h3>2. Kepanjangan CPU?</h3><select id="q2"><option value="">Pilih jawaban</option><option value="a">Computer Personal Unit</option><option value="b">Central Processing Unit</option><option value="c">Central Program Utility</option></select></div>
- <div class="card"><h3>3. Fungsi browser?</h3><select id="q3"><option value="">Pilih jawaban</option><option value="a">Mendinginkan CPU</option><option value="b">Mengganti RAM</option><option value="c">Mengakses halaman web</option></select></div>
- <button class="btn" onclick="checkQuiz()">Periksa Jawaban</button>
- <button class="btn" onclick="resetQuiz()">Ulangi</button>
- <p id="quizResult" aria-live="polite"></p>
-</section>
-
-<section id="feedback">
- <h2>✉️ Feedback</h2>
- <p>Kirim saran untuk mengembangkan Han Coding Space.</p>
- <form action="https://formsubmit.co/mraihanfirdiansyah@gmail.com" method="POST">
-  <input type="hidden" name="_subject" value="Feedback Han Coding Space">
-  <input type="hidden" name="_captcha" value="true">
-  <label for="feedbackName">Nama (opsional)</label>
-  <input id="feedbackName" name="name" placeholder="Nama kamu">
-  <label for="feedbackMessage">Pesan</label>
-  <textarea id="feedbackMessage" name="message" rows="4" required placeholder="Tulis saran..."></textarea>
-  <button class="btn" type="submit">Kirim Feedback</button>
- </form>
- <p class="small">Form memakai layanan pihak ketiga dan mungkin memerlukan konfirmasi email pertama kali.</p>
- <a class="btn" href="mailto:mraihanfirdiansyah@gmail.com?subject=Feedback%20Han%20Coding%20Space">Buka Email</a>
- <button class="btn" onclick="copyEmail()">📋 Salin Email</button>
- <p id="emailStatus" class="small" aria-live="polite"></p>
-</section>
-
-<section>
- <h2>🥚 Secret Easter Egg</h2>
- <p>Berani membuka rahasia sepak bola?</p>
- <button class="btn" onclick="toggleEgg()">🔓 Buka Easter Egg</button>
- <div id="egg"><h3>BARCELONA 2 — 8 BAYERN 😭</h3><p>Malam Liga Champions yang sulit dilupakan!</p></div>
-</section>
 </main>
-
-<footer>
- <b>HAN &lt;/&gt; CODING SPACE</b>
- <p>Belajar • Berkarya • Berkembang 💚</p>
- <p class="small">© <span id="year"></span> Han Coding Space</p>
-</footer>
+<footer>Made with ♥ by Han · HAN Coding Space</footer>
 
 <script>
-"use strict";
+// NAVIGATION
+function showPage(id,btn){
+ document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+ document.getElementById(id).classList.add('active');
+ document.querySelectorAll('nav button').forEach(b=>b.classList.remove('active'));
+ if(btn)btn.classList.add('active');
+ if(id==='market')loadCrypto();
+ if(id==='currency')loadRates();
+ window.scrollTo({top:0,behavior:'smooth'});
+}
 
-/* JAM WIB */
+// CLOCK WIB
 function updateClock(){
- const clock=document.getElementById("clock");
- if(!clock)return;
  const now=new Date();
- const date=new Intl.DateTimeFormat("id-ID",{
-  timeZone:"Asia/Jakarta",weekday:"long",day:"2-digit",month:"long",year:"numeric"
- }).format(now);
- const time=new Intl.DateTimeFormat("id-ID",{
-  timeZone:"Asia/Jakarta",hour:"2-digit",minute:"2-digit",second:"2-digit",hourCycle:"h23"
- }).format(now);
- clock.textContent=date+" • "+time+" WIB";
+ document.getElementById('clock').textContent=
+  now.toLocaleTimeString('id-ID',{timeZone:'Asia/Jakarta',hour12:false})+' WIB';
+ document.getElementById('date').textContent=
+  now.toLocaleDateString('id-ID',{timeZone:'Asia/Jakarta',weekday:'long',day:'numeric',month:'long',year:'numeric'});
 }
-updateClock();
-setInterval(updateClock,1000);
-document.getElementById("year").textContent=new Date().getFullYear();
+updateClock();setInterval(updateClock,1000);
 
-/* CODING PLAYGROUND */
-const editor=document.getElementById("editor");
-const preview=document.getElementById("preview");
-const starterCode=editor.value;
+// SONG LIST
+const songs=[
+ {title:"Blank Space (Taylor's Version)",owner:"Owner Han",q:"Taylor Swift Blank Space official"},
+ {title:"Iris",owner:"Owner Han",q:"The Goo Goo Dolls Iris official"},
+ {title:"18",owner:"Owner Han",q:"One Direction 18 official"},
+ {title:"Nuts",owner:"Request from Daiyan",q:"Lil Peep Nuts official"},
+ {title:"Stop the Wedding",owner:"Request from Pani 🌸",q:"Stop the Wedding song official"},
+ {title:"Remaja",owner:"Request from Pani 🌸",q:"HIVI Remaja official"},
+ {title:"Gadis Sampul",owner:"Request from Pani 🌸",q:"HIVI Gadis Sampul official"},
+ {title:"Semenjak Ada Dirimu",owner:"Request from Pani 🌸",q:"HIVI Semenjak Ada Dirimu official"},
+ {title:"I Love You 3000",owner:"Request from Pani 🌸",q:"Stephanie Poetri I Love You 3000 official"},
+ {title:"The Cure",owner:"Request from Pani 🌸",q:"Olivia Rodrigo The Cure song"},
+ {title:"Moral of the Story",owner:"Request from Pani 🌸",q:"Ashe Moral of the Story official"}
+];
 
-function runCode(){
- preview.srcdoc=editor.value;
- document.getElementById("editorStatus").textContent="Preview diperbarui.";
+function renderSongs(){
+ const query=document.getElementById('songSearch').value.toLowerCase();
+ document.getElementById('songs').innerHTML=songs
+ .filter(s=>(s.title+' '+s.owner).toLowerCase().includes(query))
+ .map(s=>`<div class="song">
+  <div><b>${s.title}</b><div class="small">${s.owner}</div></div>
+  <div>
+   <button onclick="playSong('${encodeURIComponent(s.q)}')">▶ Putar</button>
+   <button onclick="searchSong('${encodeURIComponent(s.q)}')">Cari</button>
+  </div></div>`).join('');
 }
-function resetCode(){
- editor.value=starterCode;
- runCode();
+function playSong(q){
+ document.getElementById('yt').src=
+ 'https://www.youtube-nocookie.com/embed?listType=search&list='+q;
+ document.getElementById('yt').scrollIntoView({behavior:'smooth',block:'center'});
 }
-function downloadCode(){
- const blob=new Blob([editor.value],{type:"text/html;charset=utf-8"});
- const url=URL.createObjectURL(blob);
- const a=document.createElement("a");
- a.href=url;
- a.download="hasil-coding.html";
- document.body.appendChild(a);
- a.click();
- a.remove();
- setTimeout(()=>URL.revokeObjectURL(url),1000);
-}
-async function copyCode(){
- try{
-  await navigator.clipboard.writeText(editor.value);
-  document.getElementById("editorStatus").textContent="Kode berhasil disalin.";
- }catch(e){
-  editor.focus();
-  editor.select();
-  document.getElementById("editorStatus").textContent="Kode dipilih. Tekan Salin dari menu HP.";
- }
-}
-runCode();
-
-/* VIDEO MUSIK DAN NARUTO */
-function makeVideo(container,id,title,autoplay){
- if(!container)return;
- container.replaceChildren();
-
- const frame=document.createElement("iframe");
- frame.className="video";
- frame.title=title;
- frame.loading="lazy";
- frame.allow="autoplay; encrypted-media; picture-in-picture; fullscreen";
- frame.allowFullscreen=true;
- frame.referrerPolicy="strict-origin-when-cross-origin";
- frame.src="https://www.youtube.com/embed/"+id+"?playsinline=1&rel=0"+(autoplay?"&autoplay=1":"");
- container.appendChild(frame);
-}
-
-function playNaruto(){
- makeVideo(
-  document.getElementById("narutoPlayer"),
-  "733J7oUR904",
-  "FLOW - GO!!! Naruto Opening",
-  true
- );
-}
-
-function playSong(title,id){
- const wrap=document.getElementById("playerWrap");
- const fallback=document.getElementById("musicFallback");
-
- document.getElementById("playerTitle").textContent="🎧 "+title;
- makeVideo(document.getElementById("musicFrame"),id,title,true);
-
- fallback.href="https://www.youtube.com/watch?v="+id;
- fallback.textContent="Jika gagal diputar, buka "+title+" di YouTube ↗";
- wrap.style.display="block";
- wrap.scrollIntoView({behavior:"smooth",block:"nearest"});
-}
-
 function searchSong(q){
- const url="https://www.youtube.com/results?search_query="+encodeURIComponent(q);
- window.open(url,"_blank","noopener");
+ window.open('https://www.youtube.com/results?search_query='+q,'_blank','noopener');
 }
+renderSongs();
 
-function stopSong(){
- document.getElementById("musicFrame").replaceChildren();
- document.getElementById("playerWrap").style.display="none";
+// CRYPTO MARKET
+const stockList=[
+ {symbol:'AAPL',name:'Apple',type:'Saham'},
+ {symbol:'MSFT',name:'Microsoft',type:'Saham'},
+ {symbol:'NVDA',name:'NVIDIA',type:'Saham'},
+ {symbol:'GOOGL',name:'Alphabet / Google',type:'Saham'},
+ {symbol:'AMZN',name:'Amazon',type:'Saham'},
+ {symbol:'TSLA',name:'Tesla',type:'Saham'},
+ {symbol:'META',name:'Meta Platforms',type:'Saham'},
+ {symbol:'ISHG',name:'iShares 1-3 Year International Treasury Bond ETF',type:'ETF'}
+];
+let assets=[];
+
+function money(v){
+ if(v==null)return 'Memerlukan API';
+ return new Intl.NumberFormat('en-US',{style:'currency',currency:'USD',maximumFractionDigits:v<1?5:2}).format(v);
 }
-
-/* GOOGLE SEARCH */
-function googleSearch(event,id){
- event.preventDefault();
- const q=document.getElementById(id).value.trim();
- if(q)window.open("https://www.google.com/search?q="+encodeURIComponent(q),"_blank","noopener");
+function changeHTML(v){
+ if(v==null)return '<span class="muted">—</span>';
+ return `<span class="${v>=0?'up':'down'}">${v>=0?'▲':'▼'} ${Math.abs(v).toFixed(2)}%</span>`;
 }
-
-/* WIKIPEDIA */
-async function searchWiki(event){
- event.preventDefault();
- const q=document.getElementById("wikiQuery").value.trim();
- const out=document.getElementById("wikiResults");
- if(!q)return;
-
- out.textContent="Sedang mencari...";
+async function loadCrypto(){
  try{
-  const url="https://id.wikipedia.org/w/api.php?action=query&generator=search&gsrsearch="+encodeURIComponent(q)+"&gsrlimit=6&prop=extracts&exintro=1&explaintext=1&format=json&origin=*";
-  const response=await fetch(url);
-  if(!response.ok)throw Error("Pencarian gagal");
+  const url='https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=bitcoin,ethereum,solana,binancecoin,ripple,cardano&price_change_percentage=24h';
+  const res=await fetch(url);
+  if(!res.ok)throw Error('API tidak tersedia');
+  const data=await res.json();
+  const symbols={bitcoin:'BTC',ethereum:'ETH',solana:'SOL',binancecoin:'BNB',ripple:'XRP',cardano:'ADA'};
+  assets=data.map(c=>({
+   symbol:symbols[c.id],name:c.name,price:c.current_price,
+   change:c.price_change_percentage_24h,type:'Crypto'
+  })).concat(stockList.map(s=>({...s,price:null,change:null})));
 
-  const data=await response.json();
-  const pages=Object.values(data.query?.pages||{});
-  out.replaceChildren();
-
-  if(!pages.length){
-   out.textContent="Artikel tidak ditemukan.";
-   return;
+  const btc=data.find(c=>c.id==='bitcoin');
+  const eth=data.find(c=>c.id==='ethereum');
+  if(btc){
+   document.getElementById('homeBTC').textContent=money(btc.current_price);
+   document.getElementById('marketBTC').textContent=money(btc.current_price);
+   document.getElementById('homeBTCChange').innerHTML=changeHTML(btc.price_change_percentage_24h);
+   document.getElementById('changeBTC').innerHTML=changeHTML(btc.price_change_percentage_24h);
   }
-
-  pages.sort((a,b)=>(a.index||0)-(b.index||0));
-  pages.forEach(page=>{
-   const item=document.createElement("div");
-   item.className="result";
-
-   const title=document.createElement("h3");
-   title.textContent=page.title;
-
-   const desc=document.createElement("p");
-   desc.textContent=(page.extract||"Ringkasan tidak tersedia.").slice(0,450);
-
-   const link=document.createElement("a");
-   link.href="https://id.wikipedia.org/?curid="+page.pageid;
-   link.target="_blank";
-   link.rel="noopener";
-   link.textContent="Baca artikel lengkap ↗";
-
-   item.append(title,desc,link);
-   out.appendChild(item);
-  });
+  if(eth){
+   document.getElementById('homeETH').textContent=money(eth.current_price);
+   document.getElementById('marketETH').textContent=money(eth.current_price);
+   document.getElementById('changeETH').innerHTML=changeHTML(eth.price_change_percentage_24h);
+  }
+  document.getElementById('updated').textContent=new Date().toLocaleTimeString('id-ID');
+  renderAssets();
  }catch(e){
-  out.textContent="Pencarian gagal. Periksa koneksi internet dan coba lagi.";
+  assets=stockList.map(s=>({...s,price:null,change:null}));
+  renderAssets();
+  document.getElementById('assets').insertAdjacentHTML('beforebegin',
+   '<p class="small">Data crypto gagal dimuat. Coba refresh atau periksa koneksi.</p>');
  }
 }
+function renderAssets(){
+ const q=(document.getElementById('assetSearch').value||'').toLowerCase();
+ document.getElementById('assets').innerHTML=assets
+ .filter(a=>(a.name+a.symbol+a.type).toLowerCase().includes(q))
+ .map(a=>`<tr><td><b>${a.name}</b><div class="small">${a.symbol}</div></td>
+ <td>${money(a.price)}</td><td>${changeHTML(a.change)}</td><td>${a.type}</td></tr>`).join('');
+}
+loadCrypto();
 
-/* KUIS */
-function checkQuiz(){
- const answers={q1:"a",q2:"b",q3:"c"};
- let score=0;
- let empty=0;
+// CURRENCY
+async function loadRates(){
+ const tbody=document.getElementById('rates');
+ tbody.innerHTML='<tr><td colspan="3">Memuat kurs...</td></tr>';
+ try{
+  const res=await fetch('https://open.er-api.com/v6/latest/USD');
+  if(!res.ok)throw Error();
+  const data=await res.json();
+  const names={
+   IDR:'Rupiah Indonesia',EUR:'Euro',GBP:'Pound Inggris',
+   JPY:'Yen Jepang',CNY:'Yuan China',SGD:'Dolar Singapura',
+   AUD:'Dolar Australia',CAD:'Dolar Kanada',CHF:'Franc Swiss',
+   INR:'Rupee India',KRW:'Won Korea Selatan',MYR:'Ringgit Malaysia',
+   THB:'Baht Thailand',SAR:'Riyal Saudi',TRY:'Lira Turki',
+   BRL:'Real Brasil',MXN:'Peso Meksiko',ZAR:'Rand Afrika Selatan',
+   NZD:'Dolar Selandia Baru',HKD:'Dolar Hong Kong',PHP:'Peso Filipina'
+  };
+  tbody.innerHTML=Object.entries(names).map(([code,name])=>`
+   <tr><td><b>${code}</b><div class="small">${name}</div></td>
+   <td>${data.rates[code]?.toLocaleString('id-ID',{maximumFractionDigits:4})||'—'}</td>
+   <td>Data kurs terbaru</td></tr>`).join('');
+  document.getElementById('homeIDR').textContent=
+   'Rp '+Math.round(data.rates.IDR).toLocaleString('id-ID');
+ }catch(e){
+  tbody.innerHTML='<tr><td colspan="3">Kurs gagal dimuat. Periksa internet.</td></tr>';
+ }
+}
+loadRates();
 
- for(const id in answers){
-  const value=document.getElem
+// LOCAL CHAT DEMO
+document.getElementById('chatForm').addEventListener('submit',function(e){
+ e.preventDefault();
+ const input=document.getElementById('chatInput');
+ const message=input.value.trim();
+ if(!message)return;
+ const el=document.createElement('div');
+ el.className='msg me';
+ el.textContent=message;
+ document.getElementById('chatbox').appendChild(el);
+ input.value='';
+ document.getElementById('chatbox').scrollTop=
+ document.getElementById('chatbox').scrollHeight;
+});
+</script>
+</body>
+ </html>
+                              
