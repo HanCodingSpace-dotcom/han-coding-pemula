@@ -3,358 +3,691 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>HAN </> Coding Space</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#090d1c">
+<title>HAN Coding Space</title>
 
 <style>
-*{box-sizing:border-box}
-:root{
- --bg:#080b18;--card:#11182c;--line:#293451;
- --purple:#8b7cff;--cyan:#50e6d2;
- --text:#f1f4ff;--muted:#9da9c7;
+:root {
+  --bg: #090d1c;
+  --card: #121a30;
+  --card2: #080e20;
+  --border: #27304c;
+  --purple: #8975ff;
+  --cyan: #53e3d0;
+  --muted: #9ba7c4;
+  --text: #edf1ff;
 }
-body{
- margin:0;background:radial-gradient(ellipse at top,#202454,var(--bg) 65%);
- color:var(--text);font:15px Arial,sans-serif;
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: Arial, Helvetica, sans-serif;
 }
-header{
- padding:20px;display:flex;justify-content:space-between;
- align-items:center;gap:12px;flex-wrap:wrap;
- border-bottom:1px solid var(--line)
+button, input, textarea, select { font: inherit; }
+button { cursor: pointer; }
+a { color: var(--cyan); }
+header {
+  padding: 22px 18px;
+  border-bottom: 1px solid var(--border);
+  background: linear-gradient(110deg,#0b1021,#17183c,#0b1021);
 }
-.logo{font-size:23px;font-weight:bold}
-.logo span{color:var(--cyan)}
-#clock{color:var(--cyan);text-align:right}
-nav{display:flex;gap:8px;padding:14px;overflow:auto}
-button{
- border:1px solid var(--line);background:#19213a;
- color:white;padding:11px 15px;border-radius:10px;cursor:pointer
+.header-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
 }
-button:hover,.active{background:var(--purple)}
-main{max-width:1100px;margin:auto;padding:16px}
-.page{display:none}
-.page.active{display:block}
-.card{
- background:linear-gradient(140deg,#151d35,#0d1223);
- border:1px solid var(--line);border-radius:17px;
- padding:20px;margin-bottom:16px;min-width:0
+.logo {
+  font-size: clamp(22px,5vw,32px);
+  font-weight: 800;
 }
-h1{font-size:clamp(30px,6vw,48px);margin:12px 0}
-h2{margin-top:0}
-p,.muted{color:var(--muted);line-height:1.6}
-.cyan{color:var(--cyan)}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px}
-.stat{padding:15px;border:1px solid var(--line);border-radius:13px;background:#090e1e}
-.stat b{display:block;font-size:21px;margin-top:8px}
-video,iframe{width:100%;aspect-ratio:16/9;border:0;border-radius:12px;background:#05060a}
-.song{
- display:flex;justify-content:space-between;align-items:center;
- flex-wrap:wrap;gap:12px;padding:14px 0;border-bottom:1px solid var(--line)
+.logo span { color: var(--cyan); }
+.clock { text-align: right; }
+#clock {
+  color: var(--cyan);
+  font-size: 19px;
+  font-weight: bold;
 }
-.small{font-size:12px;color:var(--muted);margin-top:5px}
-input{
- background:#090e1e;color:white;border:1px solid var(--line);
- border-radius:10px;padding:12px;min-width:0
+#date { color: var(--muted); font-size: 13px; margin-top: 6px; }
+
+nav {
+  display: flex;
+  gap: 9px;
+  padding: 15px;
+  overflow-x: auto;
+  background: #0c1020;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  border-bottom: 1px solid var(--border);
 }
-table{width:100%;border-collapse:collapse;min-width:480px}
-th,td{text-align:left;padding:12px;border-bottom:1px solid var(--line)}
-.tablewrap{overflow:auto}
-.up{color:#53e6a4}.down{color:#ff8298}
-#chatbox{
- height:300px;overflow:auto;background:#090e1e;
- border:1px solid var(--line);border-radius:12px;padding:12px;margin:12px 0
+nav button {
+  flex: 0 0 auto;
+  padding: 13px 17px;
+  color: var(--text);
+  background: #19213b;
+  border: 1px solid var(--border);
+  border-radius: 14px;
 }
-.msg{padding:10px;background:#202a48;border-radius:10px;margin:8px 0;overflow-wrap:anywhere}
-.me{background:#443b80;text-align:right}
-footer{text-align:center;color:var(--muted);padding:25px}
-@media(max-width:500px){header{align-items:flex-start}.card{padding:15px}}
+nav button.active, .primary {
+  background: var(--purple);
+  color: white;
+  border-color: var(--purple);
+}
+main { max-width: 1100px; margin: auto; padding: 18px; }
+.page { display: none; }
+.page.active { display: block; }
+.card {
+  background: linear-gradient(145deg,#151d35,#101629);
+  border: 1px solid var(--border);
+  border-radius: 22px;
+  padding: 22px;
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+.hero {
+  background: linear-gradient(135deg,#151b33,#101529);
+  border-top: 5px solid var(--purple);
+}
+.eyebrow { color: var(--cyan); }
+h1 { font-size: clamp(28px,6vw,40px); margin: 18px 0; }
+h2 { font-size: 25px; margin-top: 0; }
+h3 { font-size: 18px; }
+p { line-height: 1.65; }
+.muted { color: var(--muted); }
+.btn, .song-buttons button, .wiki-search button {
+  border: 1px solid var(--border);
+  background: #1b2340;
+  color: var(--text);
+  border-radius: 11px;
+  padding: 11px 14px;
+}
+.btn.primary { background: var(--purple); }
+.actions { display: flex; gap: 8px; flex-wrap: wrap; }
+video, iframe { width: 100%; border: 0; border-radius: 15px; }
+video { background: #080e20; max-height: 520px; }
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(190px,1fr));
+  gap: 12px;
+}
+.metric {
+  background: var(--card2);
+  border: 1px solid var(--border);
+  border-radius: 17px;
+  padding: 17px;
+  min-width: 0;
+}
+.metric .value { font-size: 24px; font-weight: bold; margin-top: 10px; overflow-wrap: anywhere; }
+.up { color: #53dfb0; }
+.down { color: #ff7f9c; }
+input, textarea, select {
+  width: 100%;
+  padding: 13px;
+  color: var(--text);
+  background: var(--card2);
+  border: 1px solid var(--border);
+  border-radius: 11px;
+  outline: none;
+}
+input:focus, textarea:focus { border-color: var(--purple); }
+.search-row { display: flex; gap: 9px; margin: 12px 0 18px; }
+.search-row input { flex: 1; min-width: 0; }
+.song-group { padding: 8px 0; border-bottom: 1px solid var(--border); }
+.song-group h3 { color: var(--cyan); }
+.song-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 15px 0;
+  border-bottom: 1px solid #252d46;
+}
+.song-row:last-child { border-bottom: 0; }
+.song-row strong { flex: 1; min-width: 140px; }
+.song-buttons { display: flex; gap: 6px; }
+.song-buttons .primary { background: var(--purple); }
+.wiki-result, .stock-row {
+  padding: 14px 0;
+  border-bottom: 1px solid var(--border);
+}
+.wiki-result p { margin: 7px 0; }
+.stock-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: center;
+}
+.stock-row a { text-decoration: none; font-weight: bold; }
+.chat-box {
+  height: 320px;
+  overflow-y: auto;
+  background: var(--card2);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 12px;
+  margin-bottom: 12px;
+}
+.message {
+  max-width: 90%;
+  width: fit-content;
+  padding: 10px 13px;
+  border-radius: 12px;
+  background: #202947;
+  margin: 8px 0;
+  overflow-wrap: anywhere;
+}
+.message.me { margin-left: auto; background: #6554d9; }
+footer {
+  text-align: center;
+  color: var(--muted);
+  padding: 25px 15px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+}
+.notice { color: var(--muted); font-size: 13px; }
+@media(max-width:480px) {
+  main { padding: 12px; }
+  .card { padding: 17px; border-radius: 18px; }
+  nav { padding: 10px; }
+  nav button { padding: 12px 14px; }
+  .search-row { flex-wrap: wrap; }
+  .search-row button { width: 100%; }
+}
 </style>
 </head>
 
 <body>
 <header>
- <div class="logo">HAN <span>&lt;/&gt;</span> Coding Space</div>
- <div>
-  <div id="clock">Memuat jam...</div>
-  <div id="date" class="small"></div>
- </div>
+  <div class="header-top">
+    <div class="logo">HAN <span>&lt;/&gt;</span> Coding Space</div>
+    <div class="clock">
+      <div id="clock">--:--:-- WIB</div>
+      <div id="date">Memuat tanggal...</div>
+    </div>
+  </div>
 </header>
 
 <nav>
- <button class="active" onclick="showPage('home',this)">⌂ Home</button>
- <button onclick="showPage('music',this)">♫ Music</button>
- <button onclick="showPage('market',this)">◈ Pasar Saham</button>
- <button onclick="showPage('currency',this)">⇅ Mata Uang</button>
- <button onclick="showPage('chat',this)">☏ Chat all Han-coding</button>
+  <button class="active" data-page="home">⌂ Home</button>
+  <button data-page="music">♫ Music</button>
+  <button data-page="stocks">◇ Pasar Saham</button>
+  <button data-page="currency">↕ Mata Uang</button>
+  <button data-page="wiki">🌍 Wikipedia</button>
+  <button data-page="chat">☏ Chat all Han-coding</button>
 </nav>
 
 <main>
 
 <!-- HOME -->
-<section id="home" class="page active">
- <div class="card">
-  <div class="cyan">WELCOME TO MY SPACE</div>
-  <h1>Halo, Han di sini! 👋</h1>
-  <h2 class="cyan">Build. Learn. Explore.</h2>
-  <p>Musik, pasar finansial dunia, cryptocurrency, dan tempat ngobrol dalam satu website.</p>
-  <button onclick="showPage('music')">Putar Musik ♫</button>
-  <button onclick="showPage('market')">Lihat Market ↗</button>
- </div>
+<section class="page active" id="home">
+  <div class="card hero">
+    <p class="eyebrow">WELCOME TO MY SPACE</p>
+    <h1>Halo, Han di sini! 👋</h1>
+    <h2 style="color:var(--cyan)">Build. Learn. Explore.</h2>
+    <p class="muted">
+      Musik, pasar finansial dunia, cryptocurrency, Wikipedia,
+      dan tempat ngobrol dalam satu website.
+    </p>
+    <div class="actions">
+      <button class="btn primary" onclick="showPage('music')">Putar Musik ♫</button>
+      <button class="btn" onclick="showPage('stocks')">Lihat Market ↗</button>
+      <button class="btn" onclick="showPage('wiki')">Cari Tokoh 🌍</button>
+    </div>
+  </div>
 
- <div class="card">
-  <h2>🎬 Permulaan — Naruto Shippuden OP 16</h2>
-  <video controls playsinline preload="metadata">
-   <source src="Naruto%20Shippuden%20Op%20Opening%2016%204k%2060%20FSP.mp4" type="video/mp4">
-   Browser tidak mendukung video ini.
-  </video>
-  <p class="small">Upload file video milikmu ke repository yang sama dengan index.html dan samakan nama filenya.</p>
- </div>
+  <div class="card">
+    <h2>🎬 Permulaan — Naruto Shippuden OP 16</h2>
+    <video controls playsinline preload="metadata">
+      <source src="./naruto-op16.mp4" type="video/mp4">
+      Browser kamu tidak mendukung video.
+    </video>
+    <p class="notice">
+      Agar video tampil, upload file video milikmu yang sah ke repository
+      yang sama dengan index.html, lalu beri nama naruto-op16.mp4.
+    </p>
+    <a href="https://www.youtube.com/results?search_query=Naruto+Shippuden+Opening+16"
+       target="_blank" rel="noopener noreferrer">Cari Naruto OP 16 di YouTube ↗</a>
+  </div>
 
- <div class="grid">
-  <div class="stat">₿ Bitcoin<b id="homeBTC">Memuat...</b><span id="homeBTCChange"></span></div>
-  <div class="stat">Ξ Ethereum<b id="homeETH">Memuat...</b></div>
-  <div class="stat">USD / IDR<b id="homeIDR">Memuat...</b></div>
- </div>
+  <div class="grid">
+    <div class="metric">
+      <div>₿ Bitcoin</div>
+      <div class="value" id="homeBTC">Memuat...</div>
+      <div id="homeBTCChange" class="muted">Harga pasar</div>
+    </div>
+    <div class="metric">
+      <div>Ξ Ethereum</div>
+      <div class="value" id="homeETH">Memuat...</div>
+      <div class="muted">Harga pasar</div>
+    </div>
+    <div class="metric">
+      <div>USD / IDR</div>
+      <div class="value" id="homeUSD">Memuat...</div>
+      <div class="muted">Kurs referensi</div>
+    </div>
+  </div>
 </section>
 
 <!-- MUSIC -->
-<section id="music" class="page">
- <div class="card">
-  <h2>♫ Music Corner</h2>
-  <p>Lagu diputar melalui YouTube. Tidak mengunduh audio berhak cipta.</p>
-  <iframe id="yt" src="https://www.youtube-nocookie.com/embed/"
-   title="Pemutar musik YouTube"
-   allow="encrypted-media; picture-in-picture" allowfullscreen></iframe>
+<section class="page" id="music">
+  <div class="card">
+    <h2>♫ Music Corner</h2>
+    <p class="muted">
+      Lagu dikelompokkan berdasarkan pemilik dan pengirim request.
+      Tombol akan membuka hasil pencarian YouTube.
+    </p>
 
-  <input id="songSearch" placeholder="Cari lagu..." oninput="renderSongs()" style="width:100%;margin:15px 0">
+    <div class="search-row">
+      <input id="songSearch" placeholder="Cari judul lagu atau penyanyi...">
+    </div>
 
-  <div id="songs"></div>
- </div>
+    <div id="songGroups"></div>
+  </div>
 </section>
 
-<!-- MARKET -->
-<section id="market" class="page">
- <div class="card">
-  <h2>◈ Global Stock & Crypto Market</h2>
-  <p>Harga cryptocurrency live jika API tersedia. Harga saham membutuhkan API market-data tambahan.</p>
-  <button onclick="loadCrypto()">↻ Refresh Market</button>
-  <div class="grid" style="margin:16px 0">
-   <div class="stat">Bitcoin (BTC)<b id="marketBTC">—</b><span id="changeBTC"></span></div>
-   <div class="stat">Ethereum (ETH)<b id="marketETH">—</b><span id="changeETH"></span></div>
-   <div class="stat">Update terakhir<b id="updated" style="font-size:15px">—</b></div>
+<!-- STOCKS -->
+<section class="page" id="stocks">
+  <div class="card">
+    <h2>📈 Pasar Saham Dunia</h2>
+    <p class="muted">
+      Pilih saham untuk melihat halaman harga dan grafik terbarunya.
+      Data harga langsung memerlukan penyedia data saham.
+    </p>
+    <input id="stockSearch" placeholder="Cari saham atau kode...">
+    <div id="stockList"></div>
+    <p class="notice">
+      Harga saham tidak ditampilkan secara langsung di halaman ini.
+      Klik kode saham untuk membuka informasi pasar dari Yahoo Finance.
+    </p>
   </div>
 
-  <input id="assetSearch" placeholder="Cari saham / crypto..." oninput="renderAssets()" style="width:100%;margin-bottom:12px">
-
-  <div class="tablewrap">
-   <table>
-    <thead><tr><th>Aset</th><th>Harga USD</th><th>Perubahan 24 jam</th><th>Tipe</th></tr></thead>
-    <tbody id="assets"></tbody>
-   </table>
+  <div class="card">
+    <h2>₿ Cryptocurrency</h2>
+    <p class="muted">Harga referensi dalam USD, diperbarui melalui CoinGecko.</p>
+    <div class="grid" id="cryptoGrid">
+      <div class="metric">Memuat harga crypto...</div>
+    </div>
+    <button class="btn" onclick="loadCrypto()">↻ Perbarui Harga</button>
+    <p class="notice" id="cryptoStatus"></p>
   </div>
-  <p class="small">Watchlist saham: Apple, Microsoft, NVIDIA, Google, Amazon, Tesla, Meta, serta ETF ISHG. Harga saham tidak ditampilkan sebagai live tanpa API yang mendukungnya.</p>
- </div>
 </section>
 
 <!-- CURRENCY -->
-<section id="currency" class="page">
- <div class="card">
-  <h2>⇅ Currency Tracker</h2>
-  <p>Nilai kurs terhadap 1 USD. Untuk mengetahui penguatan atau pelemahan, bandingkan dengan nilai sebelumnya.</p>
-  <button onclick="loadRates()">↻ Refresh Kurs</button>
-  <div class="tablewrap" style="margin-top:16px">
-   <table>
-    <thead><tr><th>Mata uang</th><th>Nilai per 1 USD</th><th>Keterangan</th></tr></thead>
-    <tbody id="rates"><tr><td colspan="3">Memuat kurs...</td></tr></tbody>
-   </table>
+<section class="page" id="currency">
+  <div class="card">
+    <h2>💱 Mata Uang Dunia</h2>
+    <p class="muted">Nilai tukar referensi terhadap Rupiah Indonesia (IDR).</p>
+
+    <div class="grid" id="currencyGrid">
+      <div class="metric">Memuat kurs...</div>
+    </div>
+    <button class="btn" onclick="loadCurrencies()">↻ Perbarui Kurs</button>
+    <p class="notice" id="currencyStatus"></p>
   </div>
- </div>
+
+  <div class="card">
+    <h2>🔄 Konverter Mata Uang</h2>
+    <label for="amount">Jumlah uang</label>
+    <input id="amount" type="number" min="0" value="1">
+    <div style="height:12px"></div>
+
+    <label for="fromCurrency">Dari</label>
+    <select id="fromCurrency">
+      <option value="USD">USD — Dolar AS</option>
+      <option value="IDR">IDR — Rupiah</option>
+      <option value="EUR">EUR — Euro</option>
+      <option value="GBP">GBP — Pound sterling</option>
+      <option value="JPY">JPY — Yen Jepang</option>
+      <option value="SGD">SGD — Dolar Singapura</option>
+      <option value="MYR">MYR — Ringgit Malaysia</option>
+      <option value="CNY">CNY — Yuan Tiongkok</option>
+      <option value="AUD">AUD — Dolar Australia</option>
+    </select>
+    <div style="height:12px"></div>
+
+    <label for="toCurrency">Ke</label>
+    <select id="toCurrency">
+      <option value="IDR">IDR — Rupiah</option>
+      <option value="USD">USD — Dolar AS</option>
+      <option value="EUR">EUR — Euro</option>
+      <option value="GBP">GBP — Pound sterling</option>
+      <option value="JPY">JPY — Yen Jepang</option>
+      <option value="SGD">SGD — Dolar Singapura</option>
+      <option value="MYR">MYR — Ringgit Malaysia</option>
+      <option value="CNY">CNY — Yuan Tiongkok</option>
+      <option value="AUD">AUD — Dolar Australia</option>
+    </select>
+
+    <div style="height:15px"></div>
+    <button class="btn primary" onclick="convertCurrency()">Konversi</button>
+    <h2 id="conversionResult" style="margin-top:20px">Hasil akan tampil di sini</h2>
+  </div>
+</section>
+
+<!-- WIKIPEDIA -->
+<section class="page" id="wiki">
+  <div class="card">
+    <h2>🌍 Wikipedia Tokoh Dunia</h2>
+    <p class="muted">
+      Cari tokoh sejarah, ilmuwan, pemimpin negara, atlet, atau tokoh terkenal lainnya.
+    </p>
+    <div class="search-row">
+      <input id="wikiInput" placeholder="Contoh: B.J. Habibie, Albert Einstein...">
+      <button class="btn primary" onclick="searchWiki()">Cari Tokoh</button>
+    </div>
+    <div id="wikiResults"></div>
+    <p class="notice">
+      Hasil berasal dari Wikipedia bahasa Indonesia. Klik artikel untuk membaca selengkapnya.
+    </p>
+  </div>
 </section>
 
 <!-- CHAT -->
-<section id="chat" class="page">
- <div class="card">
-  <h2>☏ Chat all Han-coding</h2>
-  <p>Chat demo. Pesan hanya tampil di browser ini, belum tersambung ke pengguna lain.</p>
-  <div id="chatbox">
-   <div class="msg">Han Bot: Selamat datang di Chat all Han-coding! 👋</div>
+<section class="page" id="chat">
+  <div class="card">
+    <h2>☏ Chat all Han-coding</h2>
+    <p class="muted">
+      Ruang pesan lokal untuk demo. Pesan hanya tersimpan di halaman ini
+      selama halaman dibuka dan tidak dikirim kepada pengguna lain.
+    </p>
+    <div class="chat-box" id="chatMessages">
+      <div class="message">HAN Coding Space 👋 Selamat datang!</div>
+      <div class="message">Tulis pesan untuk mencoba fitur chat demo ini.</div>
+    </div>
+    <form id="chatForm">
+      <div class="search-row">
+        <input id="chatInput" placeholder="Tulis pesan..." autocomplete="off" required>
+        <button class="btn primary" type="submit">Kirim ➤</button>
+      </div>
+    </form>
   </div>
-  <form id="chatForm" style="display:flex;gap:8px">
-   <input id="chatInput" placeholder="Tulis pesan..." maxlength="300" required style="flex:1;width:50%">
-   <button type="submit">Kirim</button>
-  </form>
- </div>
 </section>
 
 </main>
-<footer>Made with ♥ by Han · HAN Coding Space</footer>
+
+<footer>
+  <p>HAN &lt;/&gt; Coding Space</p>
+  <p>Build. Learn. Explore.</p>
+  <p>Informasi pasar hanya referensi, bukan saran investasi.</p>
+</footer>
 
 <script>
 // NAVIGATION
-function showPage(id,btn){
- document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
- document.getElementById(id).classList.add('active');
- document.querySelectorAll('nav button').forEach(b=>b.classList.remove('active'));
- if(btn)btn.classList.add('active');
- if(id==='market')loadCrypto();
- if(id==='currency')loadRates();
- window.scrollTo({top:0,behavior:'smooth'});
+function showPage(pageId) {
+  document.querySelectorAll(".page").forEach(page => {
+    page.classList.toggle("active", page.id === pageId);
+  });
+  document.querySelectorAll("nav button").forEach(button => {
+    button.classList.toggle("active", button.dataset.page === pageId);
+  });
+  window.scrollTo({ top: 0, behavior: "smooth" });
 }
+
+document.querySelectorAll("nav button").forEach(button => {
+  button.addEventListener("click", () => showPage(button.dataset.page));
+});
 
 // CLOCK WIB
-function updateClock(){
- const now=new Date();
- document.getElementById('clock').textContent=
-  now.toLocaleTimeString('id-ID',{timeZone:'Asia/Jakarta',hour12:false})+' WIB';
- document.getElementById('date').textContent=
-  now.toLocaleDateString('id-ID',{timeZone:'Asia/Jakarta',weekday:'long',day:'numeric',month:'long',year:'numeric'});
-}
-updateClock();setInterval(updateClock,1000);
+function updateClock() {
+  const now = new Date();
+  document.getElementById("clock").textContent =
+    new Intl.DateTimeFormat("id-ID", {
+      timeZone: "Asia/Jakarta",
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit",
+      hour12: false
+    }).format(now) + " WIB";
 
-// SONG LIST
-const songs=[
- {title:"Blank Space (Taylor's Version)",owner:"Owner Han",q:"Taylor Swift Blank Space official"},
- {title:"Iris",owner:"Owner Han",q:"The Goo Goo Dolls Iris official"},
- {title:"18",owner:"Owner Han",q:"One Direction 18 official"},
- {title:"Nuts",owner:"Request from Daiyan",q:"Lil Peep Nuts official"},
- {title:"Stop the Wedding",owner:"Request from Pani 🌸",q:"Stop the Wedding song official"},
- {title:"Remaja",owner:"Request from Pani 🌸",q:"HIVI Remaja official"},
- {title:"Gadis Sampul",owner:"Request from Pani 🌸",q:"HIVI Gadis Sampul official"},
- {title:"Semenjak Ada Dirimu",owner:"Request from Pani 🌸",q:"HIVI Semenjak Ada Dirimu official"},
- {title:"I Love You 3000",owner:"Request from Pani 🌸",q:"Stephanie Poetri I Love You 3000 official"},
- {title:"The Cure",owner:"Request from Pani 🌸",q:"Olivia Rodrigo The Cure song"},
- {title:"Moral of the Story",owner:"Request from Pani 🌸",q:"Ashe Moral of the Story official"}
+  document.getElementById("date").textContent =
+    new Intl.DateTimeFormat("id-ID", {
+      timeZone: "Asia/Jakarta",
+      weekday: "long",
+      day: "numeric",
+      month: "long",
+      year: "numeric"
+    }).format(now);
+}
+updateClock();
+setInterval(updateClock, 1000);
+
+// MUSIC: SEPARATED BY REQUESTER
+const songGroupsData = [
+  {
+    title: "Lagu Owner (Han)",
+    songs: [
+      "Iris - The Goo Goo Dolls",
+      "18 - One Direction",
+      "Blank Space (Taylor's Version) - Taylor Swift"
+    ]
+  },
+  {
+    title: "Request From Pani 🌸",
+    songs: [
+      "Stop the Wedding",
+      "Remaja - HIVI!",
+      "Gadis Sampul - HIVI!",
+      "Semenjak Ada Dirimu - HIVI!",
+      "I Love You 3000 - Stephanie Poetri",
+      "The Cure - Olivia",
+      "Moral of the Story - Ashe"
+    ]
+  },
+  {
+    title: "Request From Daiyan",
+    songs: [
+      "Nuts - Lil Peep"
+    ]
+  }
 ];
 
-function renderSongs(){
- const query=document.getElementById('songSearch').value.toLowerCase();
- document.getElementById('songs').innerHTML=songs
- .filter(s=>(s.title+' '+s.owner).toLowerCase().includes(query))
- .map(s=>`<div class="song">
-  <div><b>${s.title}</b><div class="small">${s.owner}</div></div>
-  <div>
-   <button onclick="playSong('${encodeURIComponent(s.q)}')">▶ Putar</button>
-   <button onclick="searchSong('${encodeURIComponent(s.q)}')">Cari</button>
-  </div></div>`).join('');
+function renderSongs(filter = "") {
+  const container = document.getElementById("songGroups");
+  container.innerHTML = "";
+
+  songGroupsData.forEach(group => {
+    const filteredSongs = group.songs.filter(song =>
+      song.toLowerCase().includes(filter.toLowerCase())
+    );
+
+    if (filteredSongs.length === 0) return;
+
+    const section = document.createElement("div");
+    section.className = "song-group";
+
+    const heading = document.createElement("h3");
+    heading.textContent = group.title;
+    section.appendChild(heading);
+
+    filteredSongs.forEach(song => {
+      const row = document.createElement("div");
+      row.className = "song-row";
+
+      const title = document.createElement("strong");
+      title.textContent = song;
+
+      const buttons = document.createElement("div");
+      buttons.className = "song-buttons";
+
+      const play = document.createElement("button");
+      play.className = "primary";
+      play.textContent = "▶ Putar";
+      play.onclick = () => openYouTube(song + " official audio");
+
+      const find = document.createElement("button");
+      find.textContent = "Cari";
+      find.onclick = () => openYouTube(song);
+
+      buttons.append(play, find);
+      row.append(title, buttons);
+      section.appendChild(row);
+    });
+
+    container.appendChild(section);
+  });
+
+  if (!container.children.length) {
+    container.textContent = "Lagu tidak ditemukan.";
+  }
 }
-function playSong(q){
- document.getElementById('yt').src=
- 'https://www.youtube-nocookie.com/embed?listType=search&list='+q;
- document.getElementById('yt').scrollIntoView({behavior:'smooth',block:'center'});
+
+function openYouTube(query) {
+  const url = "https://www.youtube.com/results?search_query=" +
+    encodeURIComponent(query);
+  window.open(url, "_blank", "noopener,noreferrer");
 }
-function searchSong(q){
- window.open('https://www.youtube.com/results?search_query='+q,'_blank','noopener');
-}
+
+document.getElementById("songSearch").addEventListener("input", event => {
+  renderSongs(event.target.value);
+});
 renderSongs();
 
-// CRYPTO MARKET
-const stockList=[
- {symbol:'AAPL',name:'Apple',type:'Saham'},
- {symbol:'MSFT',name:'Microsoft',type:'Saham'},
- {symbol:'NVDA',name:'NVIDIA',type:'Saham'},
- {symbol:'GOOGL',name:'Alphabet / Google',type:'Saham'},
- {symbol:'AMZN',name:'Amazon',type:'Saham'},
- {symbol:'TSLA',name:'Tesla',type:'Saham'},
- {symbol:'META',name:'Meta Platforms',type:'Saham'},
- {symbol:'ISHG',name:'iShares 1-3 Year International Treasury Bond ETF',type:'ETF'}
+// STOCK WATCHLIST: LINKS TO LIVE MARKET PAGES
+const stocks = [
+  ["AAPL", "Apple"],
+  ["MSFT", "Microsoft"],
+  ["NVDA", "NVIDIA"],
+  ["GOOGL", "Alphabet / Google"],
+  ["AMZN", "Amazon"],
+  ["TSLA", "Tesla"],
+  ["META", "Meta Platforms"],
+  ["ISHG", "iShares 1-3 Year International Treasury Bond ETF"]
 ];
-let assets=[];
 
-function money(v){
- if(v==null)return 'Memerlukan API';
- return new Intl.NumberFormat('en-US',{style:'currency',currency:'USD',maximumFractionDigits:v<1?5:2}).format(v);
-}
-function changeHTML(v){
- if(v==null)return '<span class="muted">—</span>';
- return `<span class="${v>=0?'up':'down'}">${v>=0?'▲':'▼'} ${Math.abs(v).toFixed(2)}%</span>`;
-}
-async function loadCrypto(){
- try{
-  const url='https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=bitcoin,ethereum,solana,binancecoin,ripple,cardano&price_change_percentage=24h';
-  const res=await fetch(url);
-  if(!res.ok)throw Error('API tidak tersedia');
-  const data=await res.json();
-  const symbols={bitcoin:'BTC',ethereum:'ETH',solana:'SOL',binancecoin:'BNB',ripple:'XRP',cardano:'ADA'};
-  assets=data.map(c=>({
-   symbol:symbols[c.id],name:c.name,price:c.current_price,
-   change:c.price_change_percentage_24h,type:'Crypto'
-  })).concat(stockList.map(s=>({...s,price:null,change:null})));
+function renderStocks(filter = "") {
+  const container = document.getElementById("stockList");
+  container.innerHTML = "";
 
-  const btc=data.find(c=>c.id==='bitcoin');
-  const eth=data.find(c=>c.id==='ethereum');
-  if(btc){
-   document.getElementById('homeBTC').textContent=money(btc.current_price);
-   document.getElementById('marketBTC').textContent=money(btc.current_price);
-   document.getElementById('homeBTCChange').innerHTML=changeHTML(btc.price_change_percentage_24h);
-   document.getElementById('changeBTC').innerHTML=changeHTML(btc.price_change_percentage_24h);
+  stocks.filter(stock =>
+    (stock[0] + " " + stock[1]).toLowerCase().includes(filter.toLowerCase())
+  ).forEach(stock => {
+    const row = document.createElement("div");
+    row.className = "stock-row";
+
+    const info = document.createElement("div");
+    const symbol = document.createElement("strong");
+    symbol.textContent = stock[0];
+    const name = document.createElement("div");
+    name.className = "muted";
+    name.textContent = stock[1];
+    info.append(symbol, name);
+
+    const link = document.createElement("a");
+    link.href = "https://finance.yahoo.com/quote/" +
+      encodeURIComponent(stock[0]) + "/";
+    link.target = "_blank";
+    link.rel = "noopener noreferrer";
+    link.textContent = "Lihat harga ↗";
+
+    row.append(info, link);
+    container.appendChild(row);
+  });
+
+  if (!container.children.length) {
+    container.textContent = "Saham tidak ditemukan.";
   }
-  if(eth){
-   document.getElementById('homeETH').textContent=money(eth.current_price);
-   document.getElementById('marketETH').textContent=money(eth.current_price);
-   document.getElementById('changeETH').innerHTML=changeHTML(eth.price_change_percentage_24h);
-  }
-  document.getElementById('updated').textContent=new Date().toLocaleTimeString('id-ID');
-  renderAssets();
- }catch(e){
-  assets=stockList.map(s=>({...s,price:null,change:null}));
-  renderAssets();
-  document.getElementById('assets').insertAdjacentHTML('beforebegin',
-   '<p class="small">Data crypto gagal dimuat. Coba refresh atau periksa koneksi.</p>');
- }
 }
-function renderAssets(){
- const q=(document.getElementById('assetSearch').value||'').toLowerCase();
- document.getElementById('assets').innerHTML=assets
- .filter(a=>(a.name+a.symbol+a.type).toLowerCase().includes(q))
- .map(a=>`<tr><td><b>${a.name}</b><div class="small">${a.symbol}</div></td>
- <td>${money(a.price)}</td><td>${changeHTML(a.change)}</td><td>${a.type}</td></tr>`).join('');
+
+document.getElementById("stockSearch").addEventListener("input", event => {
+  renderStocks(event.target.value);
+});
+renderStocks();
+
+// LIVE CRYPTO DATA
+const cryptoNames = {
+  bitcoin: "Bitcoin",
+  ethereum: "Ethereum",
+  solana: "Solana",
+  binancecoin: "BNB",
+  ripple: "XRP",
+  cardano: "Cardano"
+};
+
+function money(value, currency = "USD") {
+  return new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency,
+    maximumFractionDigits: currency === "IDR" ? 0 : 2
+  }).format(value);
+}
+
+async function loadCrypto() {
+  const grid = document.getElementById("cryptoGrid");
+  const status = document.getElementById("cryptoStatus");
+  grid.innerHTML = '<div class="metric">Memuat harga crypto...</div>';
+  status.textContent = "";
+
+  try {
+    const ids = Object.keys(cryptoNames).join(",");
+    const url = "https://api.coingecko.com/api/v3/simple/price?ids=" +
+      ids + "&vs_currencies=usd&include_24hr_change=true";
+
+    const response = await fetch(url);
+    if (!response.ok) throw new Error("Data tidak tersedia");
+
+    const data = await response.json();
+    grid.innerHTML = "";
+
+    Object.entries(cryptoNames).forEach(([id, name]) => {
+      if (!data[id]) return;
+
+      const card = document.createElement("div");
+      card.className = "metric";
+
+      const label = document.createElement("div");
+      label.textContent = name;
+
+      const value = document.createElement("div");
+      value.className = "value";
+      value.textContent = money(data[id].usd);
+
+      const change = document.createElement("div");
+      const percent = data[id].usd_24h_change;
+      change.className = percent >= 0 ? "up" : "down";
+      change.textContent =
+        (percent >= 0 ? "▲ " : "▼ ") +
+        Math.abs(percent).toFixed(2) + "% (24 jam)";
+
+      card.append(label, value, change);
+      grid.appendChild(card);
+
+      if (id === "bitcoin") {
+        document.getElementById("homeBTC").textContent = money(data[id].usd);
+        const homeChange = document.getElementById("homeBTCChange");
+        homeChange.textContent = (percent >= 0 ? "▲ " : "▼ ") +
+          Math.abs(percent).toFixed(2) + "% (24 jam)";
+        homeChange.className = percent >= 0 ? "up" : "down";
+      }
+      if (id === "ethereum") {
+        document.getElementById("homeETH").textContent = money(data[id].usd);
+      }
+    });
+
+    if (!grid.children.length) throw new Error("Data crypto kosong");
+    status.textContent = "Pembaruan terakhir: " + new Date().toLocaleTimeString("id-ID");
+  } catch (error) {
+    grid.innerHTML = "";
+    const message = document.createElement("p");
+    message.className = "muted";
+    message.textContent =
+      "Harga crypto gagal dimuat. Coba lagi nanti; layanan data bisa membatasi permintaan.";
+    grid.appendChild(message);
+    status.textContent = error.message;
+  }
 }
 loadCrypto();
 
-// CURRENCY
-async function loadRates(){
- const tbody=document.getElementById('rates');
- tbody.innerHTML='<tr><td colspan="3">Memuat kurs...</td></tr>';
- try{
-  const res=await fetch('https://open.er-api.com/v6/latest/USD');
-  if(!res.ok)throw Error();
-  const data=await res.json();
-  const names={
-   IDR:'Rupiah Indonesia',EUR:'Euro',GBP:'Pound Inggris',
-   JPY:'Yen Jepang',CNY:'Yuan China',SGD:'Dolar Singapura',
-   AUD:'Dolar Australia',CAD:'Dolar Kanada',CHF:'Franc Swiss',
-   INR:'Rupee India',KRW:'Won Korea Selatan',MYR:'Ringgit Malaysia',
-   THB:'Baht Thailand',SAR:'Riyal Saudi',TRY:'Lira Turki',
-   BRL:'Real Brasil',MXN:'Peso Meksiko',ZAR:'Rand Afrika Selatan',
-   NZD:'Dolar Selandia Baru',HKD:'Dolar Hong Kong',PHP:'Peso Filipina'
-  };
-  tbody.innerHTML=Object.entries(names).map(([code,name])=>`
-   <tr><td><b>${code}</b><div class="small">${name}</div></td>
-   <td>${data.rates[code]?.toLocaleString('id-ID',{maximumFractionDigits:4})||'—'}</td>
-   <td>Data kurs terbaru</td></tr>`).join('');
-  document.getElementById('homeIDR').textContent=
-   'Rp '+Math.round(data.rates.IDR).toLocaleString('id-ID');
- }catch(e){
-  tbody.innerHTML='<tr><td colspan="3">Kurs gagal dimuat. Periksa internet.</td></tr>';
- }
-}
-loadRates();
+// EXCHANGE RATES
+let exchangeRates = null;
+let ratesDate = "";
 
-// LOCAL CHAT DEMO
-document.getElementById('chatForm').addEventListener('submit',function(e){
- e.preventDefault();
- const input=document.getElementById('chatInput');
- const message=input.value.trim();
- if(!message)return;
- const el=document.createElement('div');
- el.className='msg me';
- el.textContent=message;
- document.getElementById('chatbox').appendChild(el);
- input.value='';
- document.getElementById('chatbox').scrollTop=
- document.getElementById('chatbox').scrollHeight;
-});
-</script>
-</body>
- </html>
-                              
+async function loadCurrencies() {
+  const grid = document.getElementById("currencyGrid");
+  const status = document.getElementById("currencyStatus");
+  grid.innerHTML =
